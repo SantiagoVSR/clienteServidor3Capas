@@ -57,13 +57,46 @@ arqCS-NCapas/
 
 ## Instalación y Ejecución
 
-### Opción 1: Con Docker (Recomendado)
+### Opción 1: Usando el script run.sh (Recomendado)
+
+El proyecto incluye un script `run.sh` que facilita todas las operaciones:
+
+```bash
+# Dar permisos de ejecución (solo la primera vez)
+chmod +x run.sh
+
+# Ver todas las opciones disponibles
+./run.sh help
+
+# Ejecutar con Docker (recomendado)
+./run.sh docker
+
+# Instalar todas las dependencias
+./run.sh install
+
+# Ejecutar solo el backend
+./run.sh backend
+
+# Ejecutar solo el frontend
+./run.sh frontend
+
+# Inicializar base de datos con datos de ejemplo
+./run.sh init-db
+
+# Detener contenedores Docker
+./run.sh stop
+
+# Ver logs de Docker
+./run.sh logs
+```
+
+### Opción 2: Con Docker Compose (Manual)
 
 ```bash
 docker-compose up --build
 ```
 
-### Opción 2: Manual
+### Opción 3: Manual (sin Docker)
 
 #### Backend (Tier 2)
 
@@ -75,17 +108,19 @@ pip install -r requirements.txt
 python run.py
 ```
 
-El backend estará disponible en `http://localhost:5000`
+El backend estará disponible en `http://localhost:5001`
 
 #### Frontend (Tier 1)
 
 ```bash
 cd frontend
 npm install
-npm start
+PORT=3001 npm start
 ```
 
-El frontend estará disponible en `http://localhost:3000`
+El frontend estará disponible en `http://localhost:3001`
+
+**Nota:** Los puertos 5000 y 3000 pueden estar ocupados en macOS (AirPlay Receiver y otros servicios). Por defecto, la aplicación usa los puertos 5001 y 3001.
 
 ## API Endpoints
 

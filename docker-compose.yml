@@ -19,8 +19,9 @@ services:
       dockerfile: Dockerfile
     container_name: limpieza_backend
     ports:
-      - "5000:5000"
+      - "5001:5001"
     environment:
+      - PORT=5001
       - FLASK_ENV=development
       - SQLALCHEMY_DATABASE_URI=sqlite:///limpieza_empresas.db
     volumes:
@@ -39,9 +40,10 @@ services:
       dockerfile: Dockerfile
     container_name: limpieza_frontend
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
-      - REACT_APP_API_URL=http://localhost:5000/api
+      - REACT_APP_API_URL=http://localhost:5001/api
+      - PORT=3001
     volumes:
       - ./frontend:/app
       - /app/node_modules

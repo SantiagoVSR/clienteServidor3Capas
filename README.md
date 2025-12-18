@@ -192,6 +192,7 @@ El proyecto incluye documentación completa para estudiantes y desarrolladores:
 
 - **[Guía del Estudiante](GuiaEstudiante.md)**: Explicación detallada de cómo funciona el proyecto, arquitectura, flujo de datos y cómo agregar nuevos componentes
 - **[Guía de Despliegue](guiaDespliegue.md)**: Instrucciones completas para desplegar la aplicación en diferentes entornos (local, Docker, producción, cloud)
+- **[Guía de Uso de Ramas en GitHub](guiaUsoRamasGithub.md)**: Cómo trabajar con ramas de Git/GitHub para agregar nuevas funcionalidades de manera colaborativa
 - **[Documentación de Arquitectura](ARQUITECTURA.md)**: Detalles técnicos sobre la arquitectura cliente-servidor y 3 capas
 
 ## Características
@@ -205,13 +206,19 @@ El proyecto incluye documentación completa para estudiantes y desarrolladores:
 
 ## Contribuir
 
-Si deseas contribuir al proyecto:
+Si deseas contribuir al proyecto, sigue estos pasos:
 
 1. Fork el repositorio
 2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -am 'Agregar nueva funcionalidad'`)
+3. Commit tus cambios (`git commit -am 'feat: agregar nueva funcionalidad'`)
 4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
 5. Abre un Pull Request
+
+**📖 Para más detalles**, consulta la [Guía de Uso de Ramas en GitHub](guiaUsoRamasGithub.md) que incluye:
+- Flujo completo de trabajo con ramas
+- Ejemplos prácticos paso a paso
+- Resolución de conflictos
+- Buenas prácticas y convenciones
 
 ## Soporte
 
@@ -222,5 +229,5 @@ Para preguntas o soporte:
 
 ## Licencia
 
-Este proyecto es educativo y está diseñado para fines académicos.
+@xavicrip
 

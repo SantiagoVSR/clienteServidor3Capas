@@ -25,3 +25,5 @@ class Empleado(db.Model):
 
     def __repr__(self):
         return f'<Empleado {self.nombre} {self.apellido}>'
+
+# Commit metadata: model created as part of feature/franklin

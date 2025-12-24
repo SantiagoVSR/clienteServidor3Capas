@@ -22,6 +22,7 @@ const EmpleadoView = () => {
     cargo: ''
   });
 
+  useEffect(() => { loadEmpleados(); }, []);
   useEffect(() => {
     loadEmpleados();
   }, []);
@@ -29,22 +30,15 @@ const EmpleadoView = () => {
   const loadEmpleados = async () => {
     try {
       setLoading(true);
-      const response = await empleadosAPI.getAll();
-      setEmpleados(response.data);
+      const res = await empleadosAPI.getAll();
+      setEmpleados(res.data || []);
       setError(null);
     } catch (err) {
-      setError(err.response?.data?.error || 'Error al cargar empleados');
-    } finally {
-      setLoading(false);
-    }
+      setError(err.response?.data?.error || 'Error cargando empleados');
+    } finally { setLoading(false); }
   };
 
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const handleInputChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -63,12 +57,9 @@ const EmpleadoView = () => {
         await empleadosAPI.create(formData);
         setSuccess('Empleado registrado correctamente');
       }
-      
       resetForm();
       loadEmpleados();
-    } catch (err) {
-      setError(err.response?.data?.error || 'Error al guardar empleado');
-    }
+    } catch (err) { setError(err.response?.data?.error || 'Error guardando'); }
   };
 
   const handleEdit = (empleado) => {
@@ -117,45 +108,23 @@ const EmpleadoView = () => {
     <div className="container">
       <div className="card">
         <h2>{editingId ? 'Editar Empleado' : 'Nuevo Empleado'}</h2>
-        
         {error && <div className="error">{error}</div>}
         {success && <div className="success">{success}</div>}
-        
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
+          <div>
             <label>Nombre:</label>
-            <input
-              type="text"
-              name="nombre"
-              value={formData.nombre}
-              onChange={handleInputChange}
-              required
-            />
+            <input name="nombre" value={formData.nombre} onChange={handleInputChange} required />
           </div>
 
           <div className="form-group">
             <label>Apellido:</label>
-            <input
-              type="text"
-              name="apellido"
-              value={formData.apellido}
-              onChange={handleInputChange}
-              required
-            />
+            <input name="apellido" value={formData.apellido} onChange={handleInputChange} required />
           </div>
-          
-          <div className="form-group">
+          <div>
             <label>Email:</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              required
-            />
+            <input name="email" type="email" value={formData.email} onChange={handleInputChange} required />
           </div>
-          
-          <div className="form-group">
+          <div>
             <label>Teléfono:</label>
             <input
               type="text"
@@ -205,11 +174,7 @@ const EmpleadoView = () => {
           </thead>
           <tbody>
             {empleados.length === 0 ? (
-              <tr>
-                <td colSpan="7" style={{ textAlign: 'center' }}>
-                  No hay empleados registrados
-                </td>
-              </tr>
+              <tr><td colSpan="7">No hay empleados</td></tr>
             ) : (
               empleados.map((empleado) => (
                 <tr key={empleado.id}>

@@ -48,6 +48,7 @@ export const empleadosAPI = {
   update: (id, data) => api.put(`/empleados/${id}`, data),
   delete: (id) => api.delete(`/empleados/${id}`),
 };
+
 export default api;
 
 

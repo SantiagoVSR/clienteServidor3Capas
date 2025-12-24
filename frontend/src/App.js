@@ -20,10 +20,10 @@ function App() {
         return <ServicioView />;
       case 'contratos':
         return <ContratoView />;
-      default:
-        return <EmpresaView />;
       case 'empleados':
         return <EmpleadoView />;
+      default:
+        return <EmpresaView />;
     }
   };
 
